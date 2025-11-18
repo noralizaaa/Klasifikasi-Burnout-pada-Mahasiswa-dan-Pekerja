@@ -1,4 +1,4 @@
-# 🧠 Burnout Classification Using SBERT, TF-IDF, BoW, LDA & BiLSTM
+# 🧠 Burnout Classification Using Classic Machine Learning and Deep Learning
 
 **A Comprehensive NLP Pipeline for Burnout Detection (3-Class Classification)**
 
