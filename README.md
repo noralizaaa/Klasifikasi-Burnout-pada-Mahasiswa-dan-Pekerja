@@ -1,5 +1,3 @@
----
-
 # 🧠 Burnout Classification Using SBERT, TF-IDF, BoW, LDA & BiLSTM
 
 **A Comprehensive NLP Pipeline for Burnout Detection (3-Class Classification)**
@@ -19,7 +17,6 @@ Menggunakan kombinasi teknik **classic machine learning** dan **deep learning**,
 * Naive Bayes, SVM, XGBoost, Logistic Regression, Random Forest
 * Bidirectional LSTM
 
----
 
 ## 📌 1. Deskripsi Singkat Proyek
 
@@ -198,7 +195,3 @@ Kontribusi sangat diterima. Anda dapat menambahkan:
 
 ---
 
-Jika kamu mau, aku bisa:
-✅ buat versi README yang lebih pendek
-✅ buat versi untuk presentasi atau poster
-✅ buat badge GitHub (stars, python version, dll.)
