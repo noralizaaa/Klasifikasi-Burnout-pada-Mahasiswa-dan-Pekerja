@@ -1,4 +1,4 @@
-# 🧠 Burnout Classification Using Classic Machine Learning and Deep Learning
+# 🧠 Burnout Classification Using Classic ML, Deep Learning & Transformers
 
 **A Comprehensive NLP Pipeline for Burnout Detection (3-Class Classification)**
 
@@ -8,42 +8,36 @@ Repository ini berisi implementasi *end-to-end* untuk **klasifikasi burnout** me
 * **Worker Burnout**
 * **No Burnout**
 
-Menggunakan kombinasi teknik **classic machine learning** dan **deep learning**, termasuk:
+Menggunakan kombinasi teknik **Classic Machine Learning**, **Deep Learning**, dan **Transfer Learning**, termasuk:
 
-* Sentence-BERT
-* TF-IDF (Unigram & N-gram)
-* Bag-of-Words
+* Sentence-BERT (untuk Auto-Labeling)
+* TF-IDF (Unigram & N-gram) & Bag-of-Words
 * LDA Topic Modeling
 * Naive Bayes, SVM, XGBoost, Logistic Regression, Random Forest
 * Bidirectional LSTM
+* **DistilBERT (Pre-trained Transformer)**
 
 
 ## 📌 1. Deskripsi Singkat Proyek
 
-Proyek ini bertujuan membangun sistem klasifikasi burnout berbasis teks dari data media sosial. Dua pendekatan utama digunakan:
+Proyek ini bertujuan membangun sistem klasifikasi burnout berbasis teks dari data media sosial. Tiga pendekatan utama digunakan:
 
 ### **A. Machine Learning Klasik**
-
-Dengan fitur:
-
-* TF-IDF Unigram
-* TF-IDF N-gram
-* Bag-of-Words
-* LDA Topic Distribution
-
-Model yang digunakan:
-
-* Multinomial Naive Bayes
-* Random Forest
-* SVM
-* Logistic Regression
-* XGBoost
+Model tradisional dengan *feature engineering* manual:
+* **Fitur:** TF-IDF (Unigram/N-gram), Bag-of-Words, LDA Topic Distribution.
+* **Model:** Multinomial Naive Bayes, Random Forest, SVM, Logistic Regression, XGBoost.
 
 ### **B. Deep Learning**
+Pendekatan berbasis jaringan saraf tiruan:
+* **Model:** **Bidirectional LSTM** dengan *trainable embedding* layer.
 
-Model:
+### **C. Pre-trained Transformer (Transfer Learning)**
+Pendekatan mutakhir menggunakan model bahasa yang telah dilatih sebelumnya:
+* **Model:** **DistilBERT** (`distilbert-base-uncased`) yang di-*fine-tune* khusus untuk dataset burnout ini.
 
-* **Bidirectional LSTM** dengan trainable embedding
+---
+
+## 🗂 2. Struktur Repository
 
 Dataset diberi label otomatis menggunakan **Sentence-BERT** melalui kemiripan semantik dengan query setiap kategori.
 
@@ -72,74 +66,77 @@ Pipeline mencakup:
 
 ---
 
+---
+
 ## ⚙️ 3. Fitur Utama Pipeline
 
 ### ✔ Automated Labeling menggunakan SBERT
-
-* Menghitung similarity teks–query
-* Mengambil label berdasarkan skor tertinggi
-* Menggunakan threshold untuk validitas label
+* Menghitung similarity teks–query menggunakan `all-mpnet-base-v2`.
+* Mengambil label berdasarkan skor tertinggi dengan threshold validitas.
 
 ### ✔ Text Preprocessing Lengkap
-
-* Lowercasing
-* Menghapus URL, emoji, angka, simbol
-* Stopword removal
-* Normalisasi spasi
+* Lowercasing, Hapus URL/Emoji/Simbol, Stopword removal, Normalisasi.
 
 ### ✔ Oversampling Kelas Minoritas
+Menggunakan **RandomOverSampler** untuk menyeimbangkan dataset sebelum training.
 
-Menggunakan **RandomOverSampler** untuk menyeimbangkan dataset.
-
-### ✔ Empat Metode Feature Extraction
-
-| Metode         | Deskripsi                              |
-| -------------- | -------------------------------------- |
-| TF-IDF Unigram | Representasi klasik berbasis frekuensi |
-| TF-IDF N-gram  | Menangkap konteks lebih panjang        |
-| BoW Unigram    | Baseline sederhana                     |
-| LDA Features   | Distribusi probabilistik topik         |
-
-### ✔ Bidirectional LSTM
-
-* Embedding 128 dim
-* LSTM dua arah (64 unit)
-* Dense 64 neurons
-* Dropout
+### ✔ Feature Extraction & Tokenization
+* **Classic ML:** TF-IDF, BoW, LDA.
+* **Deep Learning:** Tokenizer & Sequencing (Keras).
+* **Transformer:** DistilBertTokenizer (Hugging Face).
 
 ---
 
 ## 📊 4. Hasil Evaluasi
 
-### **A. Machine Learning**
+Berikut adalah perbandingan performa antar pendekatan:
+
+### **A. Machine Learning Klasik (Baseline)**
 
 | Model               | Feature        | Akurasi |
 | ------------------- | -------------- | ------- |
-| Naive Bayes         | Bag of Words   | 84%     |
-| Naive Bayes         | TF-IDF Unigram | 84%     |
 | Naive Bayes         | TF-IDF N-grams | 86%     |
-| Naive Bayes         | LDA            | 45%     |
-| XGBoost             | Bag of Words   | 85%     |
-| XGBoost             | TF-IDF Unigram | 86%     |
 | XGBoost             | TF-IDF N-grams | 87%     |
-| XGBoost             | LDA            | 81%     |
-| Logistic Regression | Bag of Words   | 90%     |
-| Logistic Regression | TF-IDF Unigram | 89%     |
 | Logistic Regression | TF-IDF N-grams | 91%     |
-| Logistic Regression | LDA            | 45%     |
-| SVM                 | Bag of Words   | 91%     |
-| SVM                 | TF-IDF Unigram | 91%     |
 | SVM                 | TF-IDF N-grams | 94%     |
-| SVM                 | LDA            | 45%     |
+| **Random Forest** | **TF-IDF** | **96%** |
 
-### **B. Deep Learning**
+### **B. Deep Learning (BiLSTM)**
 
-| Model                  | Akurasi |
-| ---------------------- | ------- |
-| **Bidirectional LSTM** | **93%** |
+| Model               | Akurasi |
+| ------------------- | ------- |
+| Bidirectional LSTM  | 93%     |
+
+### **C. Pre-trained Transformer (DistilBERT)**
+
+Model DistilBERT menunjukkan performa yang sangat stabil dan tinggi pada semua kelas.
+
+| Kelas            | Precision | Recall | F1-Score | Support |
+| ---------------- | :-------: | :----: | :------: | :-----: |
+| college_burnout  | 0.94      | 0.98   | 0.96     | 3329    |
+| no_burnout       | 0.97      | 1.00   | 0.99     | 3330    |
+| worker_burnout   | 0.98      | 0.91   | 0.94     | 3330    |
+| **Accuracy** |           |        | **0.96** | **9989**|
 
 ---
 
+## 🏁 5. Kesimpulan
+
+1.  **Top Performance:** **DistilBERT** dan **Random Forest** berbagi posisi teratas dengan akurasi **96%**.
+2.  **Keunggulan DistilBERT:** Mencapai **F1-Score 0.99** pada kelas *No Burnout* dan sangat presisi membedakan topik burnout pekerja vs mahasiswa.
+3.  **Efektivitas Deep Learning:** BiLSTM (93%) performanya baik, namun masih sedikit di bawah DistilBERT yang memanfaatkan *knowledge transfer* dari corpus bahasa Inggris yang masif.
+4.  **Rekomendasi:**
+    * Gunakan **DistilBERT** jika resource komputasi (GPU) tersedia dan menginginkan pemahaman konteks semantik terbaik.
+    * Gunakan **Random Forest + TF-IDF** untuk solusi yang lebih ringan, cepat, dan mudah di-deploy pada CPU.
+
+---
+
+## 🚀 6. Cara Menjalankan
+
+### 1. Clone Repository
+```bash
+git clone [https://github.com/your-username/burnout-classification.git](https://github.com/your-username/burnout-classification.git)
+cd burnout-classification
 ## 🏁 5. Kesimpulan
 
 * **Random Forest + TF-IDF** memberikan akurasi **tertinggi (96%)**, mengungguli pendekatan deep learning.
