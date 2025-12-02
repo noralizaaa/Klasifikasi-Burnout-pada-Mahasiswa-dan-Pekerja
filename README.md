@@ -114,16 +114,16 @@ Penelitian ini menyimpulkan tiga hasil utama:
 ### Persiapan Library
 Jalankan perintah berikut di terminal atau sel notebook untuk menginstall dependensi yang dibutuhkan:
 
-# Library Dasar & ML Klasik
+### Library Dasar & ML Klasik
 pip install scikit-learn pandas numpy nltk matplotlib seaborn imbalanced-learn
 
-# Library Deep Learning & Transformers
+### Library Deep Learning & Transformers
 pip install torch transformers accelerate
 
-# Library Khusus LoRA (Low-Rank Adaptation)
+### Library Khusus LoRA (Low-Rank Adaptation)
 pip install peft
 
-# Library Khusus Explainable AI (XAI)
+### Library Khusus Explainable AI (XAI)
 pip install lime
 
 ## 🚀 6. Langkah-Langkah Running Code
