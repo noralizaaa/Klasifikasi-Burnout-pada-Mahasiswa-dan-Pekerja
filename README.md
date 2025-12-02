@@ -1,4 +1,4 @@
-# 🧠 Burnout Classification Using Classic ML, Deep Learning & Transformers
+# 🧠 Burnout Classification Using Classic ML, Deep Learning, Pre-trained, LoRA dan XAI
 
 **A Comprehensive NLP Pipeline for Burnout Detection (3-Class Classification)**
 
