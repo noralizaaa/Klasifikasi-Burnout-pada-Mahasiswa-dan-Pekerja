@@ -78,15 +78,15 @@ Random Forest mencatatkan performa terbaik di kategori ini.
 ### **B. Deep Learning (BiLSTM)**
 | Model | Akurasi |
 | :--- | :--- |
-| Bidirectional LSTM | 93% |
+| Bidirectional LSTM | 94% |
 
 ### **C. Pre-trained Transformer (Full Tuning vs LoRA)**
 Perbandingan efisiensi dan akurasi antara metode Full Fine-Tuning dan LoRA.
 
 | Metode | Precision | Recall | F1-Score | Akurasi | Keterangan |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **DistilBERT (Full FT)** | 0.96 | 0.96 | 0.96 | **96%** | Akurasi Tertinggi |
-| **DistilBERT + LoRA** | 0.94 | 0.94 | 0.94 | **94%** | Paling Efisien |
+| **DistilBERT (Full FT)** | 0.96 | 0.96 | 0.96 | **97%** | Akurasi Tertinggi |
+| **DistilBERT + LoRA** | 0.94 | 0.94 | 0.94 | **96%** | Paling Efisien |
 
 ### **D. Analisis XAI (LIME)**
 Analisis pada sampel uji (Label: *College Burnout*) menunjukkan model DistilBERT + LoRA mengambil keputusan berdasarkan fitur yang valid:
