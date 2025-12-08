@@ -93,9 +93,10 @@ Analisis pada sampel uji (Label: *College Burnout*) menunjukkan model DistilBERT
 
 * **Probabilitas Prediksi:** 99.9% yakin *College Burnout*.
 * **Top Features (Kata Kunci Berpengaruh):**
-    * `class` (+0.18): Indikator kuat konteks akademik.
-    * `minutes`, `hour` (+0.08): Indikator tekanan waktu/durasi.
-    * `left` (+0.06): Indikator sisa energi/waktu.
+    * `sociology`, `class` (+0.35, +0.34): Indikator kuat konteks akademik/perkuliahan yang memicu prediksi kategori ini.
+    * `thinking` (+0.03): Mengindikasikan beban kognitif atau proses mental yang sedang berlangsung.
+    * `miserable` (+0.01): Kata sentimen negatif yang secara eksplisit mendukung prediksi emosi buruk/burnout.
+    * `adore`, `feeling` (-0.00): Kata dengan sentimen positif atau netral yang sedikit menentang prediksi (kontra-indikator).
 
 ---
 
